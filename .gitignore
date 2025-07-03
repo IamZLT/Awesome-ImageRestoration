@@ -1,0 +1,32 @@
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+# Python
+__pycache__/
+*.py[cod]
+*.so
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# VSCode
+.vscode/
+
+# 临时文件
+*.swp
+*.swo
+*~
+
+# 日志文件
+*.log
+
+# 备份文件
+*.bak
+*.tmp 
+
+# pdf源文件无需上传
+*.pdf
