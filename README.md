@@ -5,7 +5,7 @@
 ## 目录结构
 
 - `asserts/`：项目相关的图片和资源文件。
-- `paper-md/`：以Markdown格式整理的论文笔记或摘要。
+- `papers-md/`：以Markdown格式整理的论文笔记或摘要。
 - `papers/`：收集的论文PDF文件。
 
 
