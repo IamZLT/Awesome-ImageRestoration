@@ -25,13 +25,13 @@
 
 以上MoE类方法各有侧重，但都体现出**按需分配模型能力**的思想：通过引入可调整的子模块或专家，使统一模型在共享知识的同时，保留对特定退化的敏捷适应。表1总结了上述代表性方法的关键特征和性能。
 
-| 方法                                                         | 提出年份 (会议/期刊) | 关键技术与模型结构                                    | 自适应机制                                         | 性能表现                                                     |
-| ------------------------------------------------------------ | -------------------- | ----------------------------------------------------- | -------------------------------------------------- | ------------------------------------------------------------ |
-| [ADMS](https://openaccess.thecvf.com/content/CVPR2023/html/Park_All-in-One_Image_Restoration_for_Unknown_Degradations_Using_Adaptive_Discriminative_Filters_CVPR_2023_paper.html#:~:text=images with unknown degradations,Haze) | 2023 (CVPR)          | 共享主干 + 每种退化3%参数的专用滤波器模块             | 退化类型分类驱动，按类别激活专用卷积滤波器         | 在Rain-Noise-Blur、Rain-Snow-Haze多退化数据集上性能领先 [出处](https://openaccess.thecvf.com/content/CVPR2023/html/Park_All-in-One_Image_Restoration_for_Unknown_Degradations_Using_Adaptive_Discriminative_Filters_CVPR_2023_paper.html#:~:text=each degradation and to apply,Haze) |
-| [PromptIR](https://ar5iv.labs.arxiv.org/html/2306.13090#:~:text=Image%3A Refer to caption ,Distinct colors denote different) | 2023 (NeurIPS)       | 统一Transformer骨干 + 插件式提示生成与交互模块        | 从输入图像隐含预测提示向量，动态引导解码过程       | 单模型在去噪、去雨、去雾等任务达SOTA，无需退化先验 [出处](https://ar5iv.labs.arxiv.org/html/2306.13090#:~:text=Our comprehensive experiments demonstrate the,only a unified PromptIR model) |
-| [LoRA-IR](https://ar5iv.org/abs/2410.15385#:~:text=this challenge%2C we propose LoRA,guided router. This) | 2024 (arXiv预印本)   | 共享CNN主干 + 多个低秩适配（LoRA）专家模块 + CLIP路由 | CLIP提取退化表征指导路由，稀疏选择低秩专家融合输出 | 跨14项任务在29个基准上整体性能最优，参数效率高 [出处](https://ar5iv.org/abs/2410.15385#:~:text=dynamic integration mechanism significantly enhances,com%2Fshallowdream204%2FLoRA) |
-| [MoCE-IR](https://ar5iv.org/abs/2411.18466#:~:text=bypassing irrelevant experts during inference,IR model) | 2025 (CVPR)          | 多专家架构，专家块具不同计算复杂度与感受野            | “弹簧力”机制偏向低复杂度专家，逐级分配高复杂度处理 | 平均性能居当时首位，并可跳过无关专家实现高效推理 [出处](https://ar5iv.org/abs/2411.18466#:~:text=preference effectively drives task,IR) |
-| [UniRestorer](https://ar5iv.org/pdf/2412.20157#:~:text=and present our UniRestorer with,art all) | 2025 (预印本)        | 多粒度退化聚类 + 多层次MoE模型                        | 退化类型估计 + 粒度置信评估，选择粗/细粒度专家恢复 | 显著超越已有All-in-One方法，部分接近单任务模型性能 [出处](https://ar5iv.org/pdf/2412.20157#:~:text=select an appropriate expert for,com%2Fmrluin%2FUniRestorer) |
+| 方法        | 提出年份 (会议/期刊) | 关键技术与模型结构                                    | 自适应机制                                         | 性能表现                                                |
+| ----------- | -------------------- | ----------------------------------------------------- | -------------------------------------------------- | ------------------------------------------------------- |
+| ADMS        | 2023 (CVPR)          | 共享主干 + 每种退化3%参数的专用滤波器模块             | 退化类型分类驱动，按类别激活专用卷积滤波器         | 在Rain-Noise-Blur、Rain-Snow-Haze多退化数据集上性能领先 |
+| PromptIR    | 2023 (NeurIPS)       | 统一Transformer骨干 + 插件式提示生成与交互模块        | 从输入图像隐含预测提示向量，动态引导解码过程       | 单模型在去噪、去雨、去雾等任务达SOTA，无需退化先验      |
+| LoRA-IR     | 2024 (arXiv预印本)   | 共享CNN主干 + 多个低秩适配（LoRA）专家模块 + CLIP路由 | CLIP提取退化表征指导路由，稀疏选择低秩专家融合输出 | 跨14项任务在29个基准上整体性能最优，参数效率高          |
+| MoCE-IR     | 2025 (CVPR)          | 多专家架构，专家块具不同计算复杂度与感受野            | “弹簧力”机制偏向低复杂度专家，逐级分配高复杂度处理 | 平均性能居当时首位，并可跳过无关专家实现高效推理        |
+| UniRestorer | 2025 (预印本)        | 多粒度退化聚类 + 多层次MoE模型                        | 退化类型估计 + 粒度置信评估，选择粗/细粒度专家恢复 | 显著超越已有All-in-One方法，部分接近单任务模型性能      |
 
 ### **融合扩散模型和多模态的信息恢复**
 
